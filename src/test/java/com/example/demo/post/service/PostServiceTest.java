@@ -3,8 +3,7 @@ package com.example.demo.post.service;
 
 import com.example.demo.post.domain.dto.PostCreate;
 import com.example.demo.post.domain.dto.PostUpdate;
-import com.example.demo.user.infrastructure.PostEntity;
-import com.example.demo.user.service.PostService;
+import com.example.demo.post.infrastructure.PostEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

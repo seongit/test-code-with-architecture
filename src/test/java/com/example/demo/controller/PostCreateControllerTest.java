@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.dto.PostCreateDto;
+import com.example.demo.post.domain.dto.PostCreate;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -34,14 +33,14 @@ public class PostCreateControllerTest {
     @Test
     void 게시글을_생성할_수_있다() throws Exception {
 
-        PostCreateDto postCreateDto = PostCreateDto.builder()
+        PostCreate postCreate = PostCreate.builder()
                 .writerId(1L)
                 .content("wow")
                 .build();
 
         mockMvc.perform(post("/api/posts")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(postCreateDto)))
+                .content(objectMapper.writeValueAsString(postCreate)))
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.content").value("wow"));
     }

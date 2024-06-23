@@ -1,9 +1,10 @@
 package com.example.demo.service;
 
 
-import com.example.demo.model.dto.PostCreateDto;
-import com.example.demo.model.dto.PostUpdateDto;
-import com.example.demo.repository.PostEntity;
+import com.example.demo.post.domain.dto.PostCreate;
+import com.example.demo.post.domain.dto.PostUpdate;
+import com.example.demo.user.infrastructure.PostEntity;
+import com.example.demo.user.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,12 +40,12 @@ public class PostServiceTest {
     @Test
     void create로_게시글을_생성한다() {
         // given
-        PostCreateDto postCreateDto = PostCreateDto.builder()
+        PostCreate postCreate = PostCreate.builder()
                 .writerId(1)
                 .content("foobar")
                 .build();
         // when
-        PostEntity result = postService.create(postCreateDto);
+        PostEntity result = postService.create(postCreate);
 
         // then
         assertThat(result.getId()).isNotNull();
@@ -55,7 +56,7 @@ public class PostServiceTest {
     @Test
     void update로_게시글을_수정한다() {
         // given
-        PostUpdateDto dto = PostUpdateDto.builder()
+        PostUpdate dto = PostUpdate.builder()
                 .content("hello world :)")
                 .build();
 

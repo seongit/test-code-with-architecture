@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.UserStatus;
-import com.example.demo.model.dto.UserUpdateDto;
-import com.example.demo.repository.UserEntity;
-import com.example.demo.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.demo.user.domain.UserStatus;
+import com.example.demo.user.domain.dto.UserUpdate;
+import com.example.demo.user.infrastructure.UserEntity;
+import com.example.demo.user.infrastructure.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -93,7 +91,7 @@ class UserControllerTest {
     @Test
     void 사용자는_내_정보를_수정할_수_있다() throws Exception {
     	// given
-        UserUpdateDto userUpdateDto = UserUpdateDto.builder()
+        UserUpdate userUpdateDto = UserUpdate.builder()
                 .nickname("seong")
                 .address("Jeju")
                 .build();

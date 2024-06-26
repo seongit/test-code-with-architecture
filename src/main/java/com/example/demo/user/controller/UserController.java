@@ -3,7 +3,7 @@ package com.example.demo.user.controller;
 import com.example.demo.user.controller.response.MyProfileResponse;
 import com.example.demo.user.controller.response.UserResponse;
 import com.example.demo.user.domain.dto.UserUpdate;
-import com.example.demo.user.infrastructure.UserEntity;
+import com.example.demo.user.infrastructure.User;
 import com.example.demo.user.service.UserService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -53,11 +53,11 @@ public class UserController {
         @Parameter(name = "EMAIL", in = ParameterIn.HEADER)
         @RequestHeader("EMAIL") String email // 일반적으로 스프링 시큐리티를 사용한다면 UserPrincipal 에서 가져옵니다.
     ) {
-        UserEntity userEntity = userService.getByEmail(email);
-        userService.login(userEntity.getId());
+        User user = userService.getByEmail(email);
+        userService.login(user.getId());
         return ResponseEntity
             .ok()
-            .body(toMyProfileResponse(userEntity));
+            .body(toMyProfileResponse(user));
     }
 
     @PutMapping("/me")
@@ -67,31 +67,31 @@ public class UserController {
         @RequestHeader("EMAIL") String email, // 일반적으로 스프링 시큐리티를 사용한다면 UserPrincipal 에서 가져옵니다.
         @RequestBody UserUpdate userUpdateDto
     ) {
-        UserEntity userEntity = userService.getByEmail(email);
-        userEntity = userService.update(userEntity.getId(), userUpdateDto);
+        User user = userService.getByEmail(email);
+        user = userService.update(user.getId(), userUpdateDto);
         return ResponseEntity
             .ok()
-            .body(toMyProfileResponse(userEntity));
+            .body(toMyProfileResponse(user));
     }
 
-    public UserResponse toResponse(UserEntity userEntity) {
+    public UserResponse toResponse(User user) {
         UserResponse userResponse = new UserResponse();
-        userResponse.setId(userEntity.getId());
-        userResponse.setEmail(userEntity.getEmail());
-        userResponse.setNickname(userEntity.getNickname());
-        userResponse.setStatus(userEntity.getStatus());
-        userResponse.setLastLoginAt(userEntity.getLastLoginAt());
+        userResponse.setId(user.getId());
+        userResponse.setEmail(user.getEmail());
+        userResponse.setNickname(user.getNickname());
+        userResponse.setStatus(user.getStatus());
+        userResponse.setLastLoginAt(user.getLastLoginAt());
         return userResponse;
     }
 
-    public MyProfileResponse toMyProfileResponse(UserEntity userEntity) {
+    public MyProfileResponse toMyProfileResponse(User user) {
         MyProfileResponse myProfileResponse = new MyProfileResponse();
-        myProfileResponse.setId(userEntity.getId());
-        myProfileResponse.setEmail(userEntity.getEmail());
-        myProfileResponse.setNickname(userEntity.getNickname());
-        myProfileResponse.setStatus(userEntity.getStatus());
-        myProfileResponse.setAddress(userEntity.getAddress());
-        myProfileResponse.setLastLoginAt(userEntity.getLastLoginAt());
+        myProfileResponse.setId(user.getId());
+        myProfileResponse.setEmail(user.getEmail());
+        myProfileResponse.setNickname(user.getNickname());
+        myProfileResponse.setStatus(user.getStatus());
+        myProfileResponse.setAddress(user.getAddress());
+        myProfileResponse.setLastLoginAt(user.getLastLoginAt());
         return myProfileResponse;
     }
 }

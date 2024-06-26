@@ -2,7 +2,9 @@ package com.example.demo.post.domain.dto;
 
 import com.example.demo.user.domain.User;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class Post {
     private Long id;
     private String content;

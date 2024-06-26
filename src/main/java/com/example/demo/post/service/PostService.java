@@ -4,9 +4,8 @@ import com.example.demo.common.exception.ResourceNotFoundException;
 import com.example.demo.post.domain.dto.PostCreate;
 import com.example.demo.post.domain.dto.PostUpdate;
 import com.example.demo.post.infrastructure.PostEntity;
-import com.example.demo.post.infrastructure.PostJpaRepository;
 import com.example.demo.post.service.port.PostRepository;
-import com.example.demo.user.infrastructure.UserEntity;
+import com.example.demo.user.infrastructure.User;
 import java.time.Clock;
 
 import com.example.demo.user.service.UserService;
@@ -25,9 +24,9 @@ public class PostService {
     }
 
     public PostEntity create(PostCreate postCreate) {
-        UserEntity userEntity = userService.getById(postCreate.getWriterId());
+        User user = userService.getById(postCreate.getWriterId());
         PostEntity postEntity = new PostEntity();
-        postEntity.setWriter(userEntity);
+        postEntity.setWriter(user);
         postEntity.setContent(postCreate.getContent());
         postEntity.setCreatedAt(Clock.systemUTC().millis());
         return postRepository.save(postEntity);

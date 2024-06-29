@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.repository.UserEntity;
+import com.example.demo.user.domain.User;
+import com.example.demo.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserServiceTest {
         // given
         String email = "kok202@naver.com";
         // when
-        UserEntity result = userService.getByEmail(email);
+        User result = userService.getByEmail(email);
         // then
         assertThat(result.getNickname()).isEqualTo("kok202");
     }
@@ -35,7 +36,7 @@ public class UserServiceTest {
         // given
         String email = "test@naver.com";
         // when
-        UserEntity result = userService.getByEmail(email);
+        User result = userService.getByEmail(email);
         // then
         assertThat(result.getNickname()).isEqualTo("test");
     }

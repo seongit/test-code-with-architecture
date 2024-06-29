@@ -4,13 +4,15 @@ import com.example.demo.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.Clock;
+
 @Getter
 public class Post {
-    private Long id;
-    private String content;
-    private Long createdAt;
-    private Long modifiedAt;
-    private User writer;
+    private final Long id;
+    private final String content;
+    private final Long createdAt;
+    private final Long modifiedAt;
+    private final User writer;
 
     @Builder
     public Post(Long id, String content, Long createdAt, Long modifiedAt, User writer) {
@@ -20,4 +22,22 @@ public class Post {
         this.modifiedAt = modifiedAt;
         this.writer = writer;
     }
+
+    public static Post from(User writer, PostCreate postCreate){
+        return Post.builder()
+                .id(postCreate.getWriterId())
+                .content(postCreate.getContent())
+                .createdAt(Clock.systemUTC().millis())
+                .modifiedAt(Clock.systemUTC().millis())
+                .writer(writer)
+                .build();
+    }
+
+    public Post update(PostUpdate postUpdate) {
+        return Post.builder()
+                .content(postUpdate.getContent())
+                .modifiedAt(Clock.systemUTC().millis())
+                .build();
+    }
+
 }

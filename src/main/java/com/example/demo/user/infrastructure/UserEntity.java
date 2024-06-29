@@ -42,6 +42,7 @@ public class UserEntity {
     @Column(name = "last_login_at")
     private Long lastLoginAt;
 
+    // 영속성 객체에서 도메인 객체로 반환
     public User toModel(){
         return User.builder()
                 .id(id)

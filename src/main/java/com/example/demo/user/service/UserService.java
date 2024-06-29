@@ -51,16 +51,15 @@ public class UserService {
     @Transactional
     public void login(long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Users", id));
-        user.login();
+        user = user.login();
+        userRepository.save(user);
     }
 
     @Transactional
     public void verifyEmail(long id, String certificationCode) {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Users", id));
-        if (!certificationCode.equals(user.getCertificationCode())) {
-            throw new CertificationCodeNotMatchedException();
-        }
-        user.setStatus(UserStatus.ACTIVE);
+        user = user.certificate(certificationCode);
+        userRepository.save(user);
     }
 
 

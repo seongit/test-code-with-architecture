@@ -1,5 +1,7 @@
 package com.example.demo.user.domain;
 
+import com.example.demo.common.exception.CertificationCodeNotMatchedException;
+import com.example.demo.common.exception.ResourceNotFoundException;
 import com.example.demo.user.domain.dto.UserCreate;
 import com.example.demo.user.domain.dto.UserUpdate;
 import lombok.Builder;
@@ -67,6 +69,21 @@ public class User {
                 .certificationCode(certificationCode)
                 .status(status)
                 .lastLoginAt(Clock.systemUTC().millis())
+                .build();
+    }
+
+    public User certificate(String certificationCode){
+        if (!certificationCode.equals(certificationCode)) {
+            throw new CertificationCodeNotMatchedException();
+        }
+        return User.builder()
+                .id(id)
+                .email(email)
+                .nickname(nickname)
+                .address(address)
+                .certificationCode(certificationCode)
+                .status(UserStatus.ACTIVE)
+                .lastLoginAt(lastLoginAt)
                 .build();
     }
 

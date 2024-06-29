@@ -2,7 +2,6 @@ package com.example.demo.user.controller;
 
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.dto.UserUpdate;
-import com.example.demo.user.infrastructure.User;
 import com.example.demo.user.infrastructure.UserJpaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

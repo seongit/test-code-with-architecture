@@ -32,7 +32,7 @@ public class PostService {
 
     public Post update(long id, PostUpdate postUpdate) {
         Post post = getById(id);
-        post.update(postUpdate);
+        post = post.update(postUpdate);
         return postRepository.save(post);
     }
 }

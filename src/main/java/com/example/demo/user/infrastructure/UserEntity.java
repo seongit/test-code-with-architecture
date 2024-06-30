@@ -46,6 +46,7 @@ public class UserEntity {
     public User toModel(){
         return User.builder()
                 .id(id)
+                .email(email)
                 .address(address)
                 .nickname(nickname)
                 .certificationCode(certificationCode)

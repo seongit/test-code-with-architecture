@@ -35,8 +35,11 @@ public class Post {
 
     public Post update(PostUpdate postUpdate) {
         return Post.builder()
+                .id(id)
                 .content(postUpdate.getContent())
+                .createdAt(createdAt)
                 .modifiedAt(Clock.systemUTC().millis())
+                .writer(writer)
                 .build();
     }
 

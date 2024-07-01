@@ -43,8 +43,8 @@ public class UserService {
     @Transactional
     public User update(long id, UserUpdate userUpdate) {
         User user = getById(id);
-        user.update(userUpdate);
-        user = userRepository.save(user);
+        user = user.update(userUpdate);
+        userRepository.save(user);
         return user;
     }
 

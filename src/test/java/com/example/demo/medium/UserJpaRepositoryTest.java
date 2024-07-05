@@ -1,4 +1,4 @@
-package com.example.demo.user.infrastrucure;
+package com.example.demo.medium;
 
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.infrastructure.UserEntity;

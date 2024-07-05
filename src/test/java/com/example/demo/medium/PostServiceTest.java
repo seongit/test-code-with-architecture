@@ -1,10 +1,11 @@
-package com.example.demo.post.service;
+package com.example.demo.medium;
 
 
 import com.example.demo.post.domain.dto.Post;
 import com.example.demo.post.domain.dto.PostCreate;
 import com.example.demo.post.domain.dto.PostUpdate;
 import com.example.demo.post.infrastructure.PostEntity;
+import com.example.demo.post.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

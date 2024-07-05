@@ -1,4 +1,4 @@
-package com.example.demo.user.controller;
+package com.example.demo.medium;
 
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;

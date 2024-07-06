@@ -6,6 +6,7 @@ import com.example.demo.user.domain.UserStatus;
 import java.util.Optional;
 
 public interface UserRepository {
+
     Optional<User> findByEmailAndStatus(String email, UserStatus userStatus);
 
     Optional<User> findByIdAndStatus(long id, UserStatus userStatus);
@@ -13,4 +14,5 @@ public interface UserRepository {
     User save(User userEntity);
 
     Optional<User> findById(long id);
+    User getById(long id);
 }

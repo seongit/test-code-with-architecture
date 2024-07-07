@@ -1,11 +1,11 @@
 package com.example.demo.post.controller;
 
-import com.example.demo.user.controller.UserController;
+import com.example.demo.post.controller.port.PostService;
 import com.example.demo.post.controller.response.PostResponse;
 import com.example.demo.post.domain.dto.PostUpdate;
-import com.example.demo.post.infrastructure.PostEntity;
-import com.example.demo.post.service.PostService;
+import com.example.demo.post.service.PostServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "게시물(posts)")
 @RestController
 @RequestMapping("/api/posts")
+@Builder
 @RequiredArgsConstructor
 public class PostController {
 
+    // 구현체에 의존하던 코드를 추상화에 의존하도록 변경
     private final PostService postService;
 
     @GetMapping("/{id}")

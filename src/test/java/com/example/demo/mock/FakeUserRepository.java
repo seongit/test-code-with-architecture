@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class FakeUserRepository implements UserRepository {
 
-    private final Long id = 0L;
+    private final Long id = 1L;
 
     private final ArrayList<User> data = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class FakeUserRepository implements UserRepository {
 
     @Override
     public User getById(long id) {
-        return findById(id).orElseThrow(()-> new ResourceNotFoundException("Posts",id));
+        return findById(id).orElseThrow(()-> new ResourceNotFoundException("Users",id));
     }
 
     @Override

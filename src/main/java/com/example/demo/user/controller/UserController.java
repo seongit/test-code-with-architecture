@@ -1,14 +1,17 @@
 package com.example.demo.user.controller;
 
+import com.example.demo.user.controller.port.UserService;
 import com.example.demo.user.controller.response.MyProfileResponse;
 import com.example.demo.user.controller.response.UserResponse;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.dto.UserUpdate;
-import com.example.demo.user.service.UserService;
+import com.example.demo.user.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
+
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "유저(users)")
 @RestController
 @RequestMapping("/api/users")
+@Builder
 @RequiredArgsConstructor
 public class UserController {
 
@@ -55,6 +59,7 @@ public class UserController {
     ) {
         User user = userService.getByEmail(email);
         userService.login(user.getId());
+        user = userService.getByEmail(email);
         return ResponseEntity
             .ok()
             .body(MyProfileResponse.from(user));
